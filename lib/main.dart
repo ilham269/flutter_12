@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:praktek/Latihan/Latihan4.dart';
+
+// Import latihan lainnya
 // import 'package:praktek/row_column/RowColumn.dart';
-import 'package:praktek/container/LatihanContainer.dart';
-// import 'package:praktek/container/LatihanContainer2.dart';
+// import 'package:praktek/sized_box/StackWidget.dart';
+// import 'package:praktek/container/LatihanContainer22.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,38 +19,37 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Kartu Identias'),
-          backgroundColor: Colors.blue,
+          title: const Text('Flutter Layouts'),
+          backgroundColor: const Color.fromARGB(255, 0, 153, 255),
+          
           centerTitle: true,
         ),
-        body: const Column(
-          mainAxisAlignment:MainAxisAlignment.center,
-          children: [
-            LatihanContainer(),
-       
-            SizedBox(height: 20),
-            HelloWidget(),
-          ],
+
+        // =========================
+        // BODY
+        // =========================
+        body: const SafeArea(
+          child: Latihan4(),
         ),
-        // body: Rowcolumn()
       ),
     );
   }
 }
 
 class HelloWidget extends StatelessWidget {
-  const HelloWidget({
-    super.key,
-  });
+  const HelloWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         'Hello, I am a Flutter App!',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Colors.white),
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
       ),
-      
     );
   }
 }
