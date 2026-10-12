@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SizedBoxWidget extends StatelessWidget {
+  const SizedBoxWidget({super.key});
+
 
 
   @override

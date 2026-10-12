@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:praktek/Latihan/Latihan4.dart';
+import 'package:flutter/material.dart' hide ListView;
+import 'package:praktek/list-view/GridView.dart';
 
 // Import latihan lainnya
 // import 'package:praktek/row_column/RowColumn.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         // BODY
         // =========================
         body: const SafeArea(
-          child: Latihan4(),
+          child: Gridview(),
         ),
       ),
     );
