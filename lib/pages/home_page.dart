@@ -8,31 +8,46 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),
-      body: Center(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.about);
-              },
-              child: const Text('Masuk Profile'),
+            _routeButton(context, 'Masuk Profile', AppRoutes.about),
+            _routeButton(context, 'Form Registrasi', AppRoutes.inputform),
+            _routeButton(context, 'Form Pendaftaran Eskul', AppRoutes.inputeskul),
+            _routeButton(context, 'Masuk List', AppRoutes.listView),
+            _routeButton(
+              context,
+              'SingleChildScrollView',
+              AppRoutes.singlechild,
             ),
-            SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.listView);
-              },
-              child: const Text('Masuk List'),
+            _routeButton(context, 'Latihan 3', AppRoutes.latihan3),
+            _routeButton(context, 'Latihan 4', AppRoutes.latihan4),
+            _routeButton(context, 'Latihan 5', AppRoutes.latihan5),
+            _routeButton(context, 'Latihan 6', AppRoutes.latihan6),
+            _routeButton(
+              context,
+              'Latihan Container',
+              AppRoutes.latihanContainer,
             ),
-            SizedBox(height: 24,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.singlechild);
-              },
-              child: const Text('new page'),
+            _routeButton(
+              context,
+              'Latihan Container 2',
+              AppRoutes.latihanContainer2,
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _routeButton(BuildContext context, String label, String route) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: ElevatedButton(
+        onPressed: () => Navigator.pushNamed(context, route),
+        child: Text(label),
       ),
     );
   }
