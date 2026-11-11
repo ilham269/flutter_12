@@ -5,31 +5,27 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:praktek/main.dart';
 
 void main() {
-  testWidgets('home page opens list and scroll routes', (
+  testWidgets('dashboard links to the online store and exercises', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('Halaman utama'), findsOneWidget);
+    expect(find.text('Dashboard Latihan'), findsOneWidget);
+    expect(find.text('Daftar Latihan'), findsOneWidget);
 
-    await tester.drag(find.byType(GridView), const Offset(0, -600));
+    await tester.tap(find.text('Toko Online'));
     await tester.pumpAndSettle();
-    await tester.ensureVisible(find.text('List View'));
-    await tester.tap(find.text('List View'));
-    await tester.pumpAndSettle();
-    expect(find.text('Contoh ListView'), findsOneWidget);
+    expect(find.text('Toko Elektronik'), findsOneWidget);
 
     await tester.pageBack();
     await tester.pumpAndSettle();
-    await tester.ensureVisible(find.text('SingleChildScrollView'));
-    await tester.tap(find.text('SingleChildScrollView'));
+    await tester.tap(find.text('Latihan 3'));
     await tester.pumpAndSettle();
-    expect(find.text('Contoh SingleChildScrollView'), findsOneWidget);
+    expect(find.text('Pemasukan'), findsOneWidget);
   });
 }

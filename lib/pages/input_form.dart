@@ -83,30 +83,22 @@ class _FormPageState extends State<FormPage> {
                   "Jenis Kelamin",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                Row(
-                  children: [
-                    Radio<String>(
-                      value: "Laki-laki",
-                      groupValue: _jk,
-                      onChanged: (value) {
-                        setState(() {
-                          _jk = value!;
-                        });
-                      },
-                    ),
-                    const Text("Laki-laki"),
-                    const SizedBox(width: 16),
-                    Radio<String>(
-                      value: "Perempuan",
-                      groupValue: _jk,
-                      onChanged: (value) {
-                        setState(() {
-                          _jk = value!;
-                        });
-                      },
-                    ),
-                    const Text("Perempuan"),
-                  ],
+                RadioGroup<String>(
+                  groupValue: _jk,
+                  onChanged: (value) {
+                    if (value != null) {
+                      setState(() => _jk = value);
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      const Radio<String>(value: "Laki-laki"),
+                      const Text("Laki-laki"),
+                      const SizedBox(width: 16),
+                      const Radio<String>(value: "Perempuan"),
+                      const Text("Perempuan"),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 16),
                 TextFormField(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'struk_page.dart';
 
@@ -436,26 +435,35 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return _sectionCard(
       title: 'Pilih Kurir / Pengiriman',
       children: [
-        for (var i = 0; i < _couriers.length; i++)
-          RadioListTile<int>(
-            value: i,
-            groupValue: _selectedCourierIndex,
-            onChanged: (value) =>
-                setState(() => _selectedCourierIndex = value!),
-            activeColor: _darkText,
-            contentPadding: EdgeInsets.zero,
-            title: Text(
-              _couriers[i].name,
-              style: const TextStyle(
-                color: _darkText,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            subtitle: Text(
-              '${_formatRupiah(_couriers[i].cost)} • ${_couriers[i].estimate}',
-              style: const TextStyle(color: Colors.black54, fontSize: 13),
-            ),
+        RadioGroup<int>(
+          groupValue: _selectedCourierIndex,
+          onChanged: (value) {
+            if (value != null) {
+              setState(() => _selectedCourierIndex = value);
+            }
+          },
+          child: Column(
+            children: [
+              for (var i = 0; i < _couriers.length; i++)
+                RadioListTile<int>(
+                  value: i,
+                  activeColor: _darkText,
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(
+                    _couriers[i].name,
+                    style: const TextStyle(
+                      color: _darkText,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '${_formatRupiah(_couriers[i].cost)} • ${_couriers[i].estimate}',
+                    style: const TextStyle(color: Colors.black54, fontSize: 13),
+                  ),
+                ),
+            ],
           ),
+        ),
       ],
     );
   }
@@ -472,29 +480,39 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return _sectionCard(
       title: 'Metode Pembayaran',
       children: [
-        for (final m in methods)
-          Card(
-            color: Colors.white,
-            elevation: 0,
-            margin: const EdgeInsets.symmetric(vertical: 4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-              side: BorderSide(
-                color: _paymentMethod == m['value']
-                    ? _darkText
-                    : Colors.grey.shade200,
-              ),
-            ),
-            child: RadioListTile<String>(
-              value: m['value'] as String,
-              groupValue: _paymentMethod,
-              onChanged: (value) => setState(() => _paymentMethod = value!),
-              activeColor: _darkText,
-              title: Text(m['value'] as String),
-              secondary: Icon(m['icon'] as IconData, color: _darkText),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-            ),
+        RadioGroup<String>(
+          groupValue: _paymentMethod,
+          onChanged: (value) {
+            if (value != null) {
+              setState(() => _paymentMethod = value);
+            }
+          },
+          child: Column(
+            children: [
+              for (final m in methods)
+                Card(
+                  color: Colors.white,
+                  elevation: 0,
+                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    side: BorderSide(
+                      color: _paymentMethod == m['value']
+                          ? _darkText
+                          : Colors.grey.shade200,
+                    ),
+                  ),
+                  child: RadioListTile<String>(
+                    value: m['value'] as String,
+                    activeColor: _darkText,
+                    title: Text(m['value'] as String),
+                    secondary: Icon(m['icon'] as IconData, color: _darkText),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                  ),
+                ),
+            ],
           ),
+        ),
         // Kartu input fields
         AnimatedCrossFade(
           firstChild: const SizedBox.shrink(),

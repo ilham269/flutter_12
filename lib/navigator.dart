@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:praktek/list-view/ListView.dart';
+import 'package:praktek/list-view/list_view.dart';
 
 class NavigatorWidget extends StatelessWidget {
   const NavigatorWidget({super.key});
