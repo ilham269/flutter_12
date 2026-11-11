@@ -5,7 +5,6 @@ import 'package:praktek/Latihan/Latihan5.dart';
 import 'package:praktek/Latihan/Latihan6.dart';
 import 'package:praktek/Latihan/LatihanContainer.dart';
 import 'package:praktek/Latihan/LatihanContainer2.dart';
-import 'package:praktek/pages/about_page.dart';
 import 'package:praktek/pages/home_page.dart';
 import 'package:praktek/pages/input_form.dart';
 import 'package:praktek/pages/input_eskul.dart';
@@ -28,7 +27,7 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     home: (context) => const HomePage(),
-    about: (context) => const AboutPage(),
+    about: (context) => const Scaffold(),
     inputeskul: (context) => const FormPageEskul(),
     inputform: (context) => const FormPage(),
     listView: (context) => const Listview(),

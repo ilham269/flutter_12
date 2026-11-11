@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:praktek/main.dart';
@@ -15,9 +16,12 @@ void main() {
   ) async {
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('Home Page'), findsOneWidget);
+    expect(find.text('Halaman utama'), findsOneWidget);
 
-    await tester.tap(find.text('Masuk List'));
+    await tester.drag(find.byType(GridView), const Offset(0, -600));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('List View'));
+    await tester.tap(find.text('List View'));
     await tester.pumpAndSettle();
     expect(find.text('Contoh ListView'), findsOneWidget);
 
